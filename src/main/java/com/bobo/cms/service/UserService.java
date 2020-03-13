@@ -48,4 +48,14 @@ public interface UserService {
 	 * @return: 
 	 */
 	boolean insert(User user);
+	
+
+	/**
+	 * @Title: getRandomUserId   
+	 * @Description: 获取随机用户Id   
+	 * @param: @return      
+	 * @return: Integer      
+	 * @throws
+	 */
+	Integer getRandomUserId();
 }

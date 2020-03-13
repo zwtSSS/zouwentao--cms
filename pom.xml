@@ -4,7 +4,6 @@
   <artifactId>bobo-cms</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  
 	<!-- 定义主要版本号 -->
 	<properties>
 		<spring.version>5.1.5.RELEASE</spring.version>
@@ -15,7 +14,7 @@
 		<mysql.version>5.1.6</mysql.version>
 		<mybatis.spring.version>1.3.0</mybatis.spring.version>
 		<jackson.version>2.9.1</jackson.version>
-		<validator.version>6.0.10.Final</validator.version>
+		<validator.version>5.1.0.Final</validator.version>
 		<poi.version>3.9</poi.version>
 		<jstl.version>1.2</jstl.version>
 		<servlet-api.version>2.5</servlet-api.version>
@@ -29,10 +28,13 @@
 		<aspectj-version>1.8.0</aspectj-version>
 		<!-- 分页助手 -->
 		<pagehelper-version>5.1.2</pagehelper-version>
-
+		
+		<!-- 文件拷贝时的编码 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>  
+        <!-- 编译时的编码 -->  
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 	</properties>
-
-
 	<!-- jar依赖 -->
 	<dependencies>
 		<!-- 依赖工具工程 -->
@@ -41,7 +43,17 @@
 			<artifactId>yangchunbo-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-
+		<!-- 验证框架 -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.8.3</version>
+		</dependency>
 		<!-- spring 及springMVC -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -114,7 +126,6 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>${log4j.version}</version>
-
 		</dependency>
 		<dependency>
 			<groupId>commons-logging</groupId>
@@ -131,8 +142,6 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${log4japi.version}</version>
 		</dependency>
-
-
 		<!-- 单元测试 -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -203,21 +212,17 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>${validator.version}</version>
 		</dependency>
-
 		<!-- mybaits pagehelper 分页助手 -->
-
 		<dependency>
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper</artifactId>
 			<version>${pagehelper-version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-
 		<!-- 富文本编辑器使用该文件上传 -->
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
@@ -229,17 +234,102 @@
 			<artifactId>gson</artifactId>
 			<version>2.8.5</version>
 		</dependency>
+        <!-- redis -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>1.4.1.RELEASE</version>
+        </dependency>
+        <!-- fastjson -->
+        <dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>fastjson</artifactId>
+		    <version>1.2.4</version>
+		</dependency>
+		<!-- elaticSearch -->
+		<dependency>
+			<groupId>org.elasticsearch</groupId>
+			<artifactId>elasticsearch</artifactId>
+			<version>6.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.elasticsearch.client</groupId>
+			<artifactId>elasticsearch-rest-client</artifactId>
+			<version>6.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.elasticsearch.client</groupId>
+			<artifactId>elasticsearch-rest-high-level-client</artifactId>
+			<version>6.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-elasticsearch</artifactId>
+			<version>3.1.3.RELEASE</version>
+		</dependency>
+		<!-- jsoup -->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.12.1</version>
+		</dependency>
+        <!-- kafka -->
+		<dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+            <version>2.2.0.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka_2.10</artifactId>
+            <version>0.8.2.1</version>
+		</dependency>
+        <!-- fastjson -->
+        <dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>fastjson</artifactId>
+		    <version>1.2.4</version>
+		</dependency>
 	</dependencies>
-
-
 	<!-- 构建项目 -->
 	<build>
+		<finalName>ROOT</finalName>
 		<plugins>
+			<plugin>
+				<!-- mavend 编译插件 -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<!-- 编码格式 -->
+					<encoding>utf-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+				<version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 			<!-- jetty配置 -->
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.3.7.v20160115</version>
+				<version>9.4.9.v20180320</version>
 				<configuration>
 					<httpConnector>
 						<!-- 项目端口号 -->
@@ -247,29 +337,39 @@
 						<!--项目路径 -->
 						<host>localhost</host>
 					</httpConnector>
-
 					<!-- 配置虚拟访问路径 -->
 					<contextHandlers>
 						<jettyWebAppContext>
-							<!-- 虚拟路径 访问路径 -->
+							<!-- 虚拟路径 -->
 							<contextPath>/pic/</contextPath>
 							<!-- 物理路径 -->
-							<resourceBase>d:/pic/</resourceBase>
+							<resourceBase>D:/pic</resourceBase>
 						</jettyWebAppContext>
 					</contextHandlers>
-
-					<!-- 扫描的配置. 如果项目源码改变,1秒后重启jetty -->
 					<scanIntervalSeconds>1</scanIntervalSeconds>
 				</configuration>
 			</plugin>
-
-			<!-- 生成站点 site -->
+			<!-- Tomcat插件：非官方插件，第三方插件，用于启动Web服务。运行命令：tomcat7:run -->
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>3.7.1</version>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<update>true</update>
+					<!-- 项目端口号 -->
+					<port>80</port>
+					<!-- 项目的访问路径 -->
+					<path>/</path>
+					<!-- get请求中文乱码 -->
+					<uriEncoding>utf-8</uriEncoding>
+					<contextReloadable>true</contextReloadable>
+					<useTestClasspath>true</useTestClasspath>
+					<staticContextPath>/pic/</staticContextPath>
+					<staticContextDocbase>D:/pic/</staticContextDocbase>
+					<!-- <staticContextPath>/img/</staticContextPath>
+					<staticContextDocbase>D:/pic/</staticContextDocbase> -->
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-  
 </project>

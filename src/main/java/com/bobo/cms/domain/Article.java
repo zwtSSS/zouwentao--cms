@@ -2,6 +2,11 @@ package com.bobo.cms.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 /**
  * 
  * @ClassName: Article 
@@ -9,6 +14,7 @@ import java.util.Date;
  * @author: charles
  * @date: 2019年12月10日 下午3:08:27
  */
+@Document(indexName="bobocms",type="article")
 public class Article implements Serializable {
     /**
 	 * @fieldName: serialVersionUID
@@ -16,39 +22,40 @@ public class Article implements Serializable {
 	 * @Description: TODO
 	 */
 	private static final long serialVersionUID = 1L;
-
+	@Id
+	@Field(store=true,index=false,type=FieldType.Integer)
 	private Integer id;
-
+	@Field(store=true,index=true,type=FieldType.Text,analyzer="ik_smart",searchAnalyzer="ik_smart")
     private String title;
-
+	@Field(store=true,index=false,type=FieldType.Text)
     private String picture;
-
+	@Field(store=true,index=false,type=FieldType.Integer)
     private Integer channelId;
-
+	@Field(store=true,index=false,type=FieldType.Integer)
     private Integer categoryId;
-
+	@Field(store=true,index=false,type=FieldType.Integer)
     private Integer userId;
-
+    @Field(store=true,index=true,type=FieldType.Text,analyzer="ik_smart",searchAnalyzer="ik_smart")
 	private String content;//文章内容
-
+    @Field(store=true,index=true,type=FieldType.Text,analyzer="ik_smart",searchAnalyzer="ik_smart")
     private String summary;//文章摘要
-
+    @Field(store=true,index=false,type=FieldType.Integer)
     private Integer hits;
-
+    @Field(store=true,index=false,type=FieldType.Integer)
     private Integer hot;
-
+    @Field(store=true,index=false,type=FieldType.Integer)
     private Integer status;
-
+    @Field(store=true,index=false,type=FieldType.Integer)
     private Integer deleted;
-
+    @Field(store=true,index=false,type=FieldType.Date)
     private Date created;
-
+    @Field(store=true,index=false,type=FieldType.Date)
     private Date updated;
-
+    @Field(store=true,index=false,type=FieldType.Integer)
     private Integer contentType;
-
+    @Field(store=true,index=false,type=FieldType.Text)
     private String keywords;
-
+    @Field(store=true,index=false,type=FieldType.Text)
     private String original;
     
     
@@ -74,6 +81,9 @@ public class Article implements Serializable {
 	}
 
 	public String getPicture() {
+		if(picture!=null && !picture.startsWith("http")) {
+			return "/pic/"+picture;
+		}
 		return picture;
 	}
 

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title></title>
 <!-- 引入 css -->
 <link rel="stylesheet" type="text/css"

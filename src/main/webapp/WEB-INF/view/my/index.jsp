@@ -49,6 +49,8 @@
 				<ul class="list-group">
 					<li class="list-group-item active" > <a href="#" data="/my/article/articles"><font color="red">我的文章</font></a></li>
 					<li class="list-group-item"> <a href="#" data="/my/article/publish"><font color="red">发布文章</font></a></li>
+					<li class="list-group-item"> <a href="#" data="/my/article/picture"><font color="red">发布图片</font></a></li>
+					<li class="list-group-item"> <a href="#" data="/my/article/collect"><font color="red">收藏文章</font></a></li>
 					<li class="list-group-item"><a href="#" data="/my/stars"><font color="red">我的粉丝</font></a></li>
 					<li class="list-group-item"> <a href="#" data="/my/article/readed"> <font color="red">阅读历史</font></a></li>
 					<li class="list-group-item"><a href="#" data="/my/user/update"> <font color="red">编辑资料</font></a></li>

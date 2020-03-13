@@ -2,6 +2,8 @@ package com.bobo.cms.controller;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,6 +31,10 @@ public class AdminController {
 	private UserService userService;
 	@Resource
 	private ArticleService articleService;
+	
+	@SuppressWarnings("rawtypes")
+	@Autowired
+	private RedisTemplate redisTemplate;
    /**
     * 
     * @Title: index 
@@ -67,9 +73,13 @@ public class AdminController {
 	
 	
 	//修改文章
+	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping("article/update")
 	public boolean update(Article article) {
+		/** 设置缓存的Key **/
+		String cacheKey = "hotlist:1";
+		redisTemplate.delete(cacheKey);
 		return articleService.update(article);
 	}
 	//查询单个文章

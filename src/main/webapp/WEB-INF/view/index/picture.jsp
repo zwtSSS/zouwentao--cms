@@ -19,7 +19,7 @@
 </head>
 
 <body>
-	<div class="container">
+	
 		<!-- 文章标题，占12列 -->
 		<div class="row">
 			<div class="col-md-12">
@@ -44,10 +44,17 @@
 		<div class="row">
 			<!-- 左侧占9列 -->
 			<div class="col-md-9">
-
-				<div>${article.content }</div>
-
+	
+				<div class="pic" style="max-width: 50px">${article.content }</div>
+				
+				
 				<hr style="height: 3px; border: none; border-top: 3px double red;" />
+				
+				
+				
+				
+				
+				
 				<!-- 如果用户没有登录则不显示评论框 -->
 				<c:if test="${null!=sessionScope.user }">
 					<div>
@@ -80,24 +87,7 @@
 			</div>
 			<div class="col-md-3">
 			
-			<!-- 热门推荐 -->
-				<div class="card" style="width: 18rem;">
-					<div class="card-header" style="text-align: center;">热门推荐</div>
-					<div class="card-body">
-						<c:forEach items="${hotArticles.list}" var="hotArticle">
-							<ul class="list-unstyled">
-								<li class="media"><img src="${hotArticle.picture }"
-									class="mr-3" alt="..." width="60" height="60">
-									<div class="media-body">
-										<p style="font-size: 14px">
-											<a href="/articleDetail?id=${hotArticle.id}" target="_blank">${hotArticle.title }</a>
-										</p>
-									</div></li>
-							</ul>
-							<hr>
-						</c:forEach>
-					</div>
-				</div>
+			
 			</div>
 		</div>
 		
@@ -111,7 +101,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	
 </body>
 
 <script type="text/javascript">

@@ -131,7 +131,7 @@
 
 					<c:forEach items="${info.list}" var="article">
 						<div class="media">
-							<img src="/pic/${article.picture}"
+							<img src="${article.picture}"
 								class="align-self-center mr-3 rounded" alt="..." width="156px"
 								height="101.8">
 							<div class="media-body">
@@ -174,7 +174,7 @@
 					<div>
 						<c:forEach items="${info.list}" var="article">
 							<div class="media">
-								<img src="/pic/${article.picture}"
+								<img src="${article.picture}"
 									class="align-self-center mr-3 rounded" alt="..." width="156px"
 									height="101.8">
 								<div class="media-body">
@@ -207,15 +207,40 @@
 							style="width: 14rem; margin-right: 5px">
 						<button class="btn btn-info" type="button">搜索</button>
 					</div>
-
 				</div>
-				<!-- 24小时热文 -->
+				
+				
+				
+				
+				
+				
 				<div class="card" style="width: 18rem;">
+					
+					<!-- 最新图片 -->
+					<div class="card-header" style="text-align: center;">最新图片</div>
+					<div class="card-body">
+						<c:forEach items="${listPicture.list}" var="picture">
+							<ul class="list-unstyled">
+								<li class="media">
+									<div class="media-body">
+										<p style="font-size: 14px">
+											<a href="/articleDetail?id=${picture.id}" target="_blank"><img src="${picture.picture }"
+									class="mr-3" alt="..." width="60" height="60">${picture.title }</a>
+										</p>
+									</div></li>
+							</ul>
+							<hr>
+						</c:forEach>
+					</div>
+					
+				
+					
+					<!-- 24小时热文 -->
 					<div class="card-header" style="text-align: center;">24小时热文</div>
 					<div class="card-body">
 						<c:forEach items="${hot24ArticleInfo.list}" var="hot24Article">
 							<ul class="list-unstyled">
-								<li class="media"><img src="/pic/${hot24Article.picture }"
+								<li class="media"><img src="${hot24Article.picture }"
 									class="mr-3" alt="..." width="60" height="60">
 									<div class="media-body">
 										<p style="font-size: 14px">
@@ -232,7 +257,7 @@
 					<div class="card-body">
 						<c:forEach items="${lastInfo.list}" var="lastArticle">
 							<ul class="list-unstyled">
-								<li class="media"><img src="/pic/${lastArticle.picture }"
+								<li class="media"><img src="${lastArticle.picture }"
 									class="mr-3" alt="..." width="60" height="60">
 									<div class="media-body">
 										<p style="font-size: 14px">
