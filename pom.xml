@@ -249,7 +249,7 @@
         <dependency>
 		    <groupId>com.alibaba</groupId>
 		    <artifactId>fastjson</artifactId>
-		    <version>1.2.4</version>
+		    <version>1.2.25</version>
 		</dependency>
 		<!-- elaticSearch -->
 		<dependency>
@@ -293,7 +293,7 @@
         <dependency>
 		    <groupId>com.alibaba</groupId>
 		    <artifactId>fastjson</artifactId>
-		    <version>1.2.4</version>
+		    <version>1.2.25</version>
 		</dependency>
 	</dependencies>
 	<!-- 构建项目 -->
